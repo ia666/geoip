@@ -17,17 +17,7 @@ ENV GEOIP_BASE_URL      http://geolite.maxmind.com/download/geoip/database
 ENV GEOIP_CNTR_DB       GeoLite2-Country.mmdb
 ENV GEOIP_CITY_DB       GeoLite2-City.mmdb
 ENV GEOIP_DB_DIR        /usr/share/GeoIP
-ENV GEOIPUPDATE_VER     "4.0.6"
-
-# download gzip database files to /tmp/
-ADD ${GEOIP_BASE_URL}/${GEOIP_CNTR_DB}.gz /tmp/
-ADD ${GEOIP_BASE_URL}/${GEOIP_CITY_DB}.gz /tmp/
-
-# unzip databases into database directory
-RUN mkdir -p ${GEOIP_DB_DIR} \
- && gunzip -c /tmp/${GEOIP_CNTR_DB}.gz > ${GEOIP_DB_DIR}/${GEOIP_CNTR_DB} \
- && gunzip -c /tmp/${GEOIP_CITY_DB}.gz > ${GEOIP_DB_DIR}/${GEOIP_CITY_DB} \
- && rm -f /tmp/GeoLite2-*
+ENV GEOIPUPDATE_VER     "4.2.2"
 
 VOLUME ${GEOIP_DB_DIR}
 
